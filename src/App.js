@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import "./App.css";
 import QuestionCard from "./components/QuestionCard";
+import Help from "./components/Help";
 import AnswerCard from "./components/AnswerCard";
 import countries from "./data/countries";
 
@@ -22,6 +23,11 @@ const App = () => {
   const next = () => {
     setUserAnswer("");
     setCountry(countries[random()]);
+    setHelp(false);
+  };
+
+  const addHelp = () => {
+    setHelp(true);
   };
 
   // setCountry(countries[Math.floor(Math.random() * (countries.length - 0 + 1) + 0)])
@@ -45,8 +51,9 @@ const App = () => {
         userAnswer={userAnswer}
         setUserAnswer={setUserAnswer}
       ></AnswerCard>
-
       <button onClick={next}>Next</button>
+      <button onClick={addHelp}>Help</button>
+      {help ? <Help index={index} countries={countries}></Help> : <p></p>}
     </div>
   );
 };
